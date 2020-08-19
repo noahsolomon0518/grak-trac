@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+nav {
+    height: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color:azure;
+    
+}
+
+nav > div > a {
+    margin-right:2vw;
+    text-decoration: none;
+    font-size: 1em;
+    text-align: center;
+    line-height: 80px;
+    min-height: 40px;
+    min-width: 100px;
+    justify-self: flex-end;
+
+}
+nav > div {
+    height:100%;
+    display: flex;
+    justify-self: end;
+}
+
+nav > div > a:hover{
+    opacity: .7;
+    background-color: thistle;
+}
+
+
+nav > div > a.selected{
+    text-decoration: underline;
+}
+
+
+nav > header {
+    font-size: 2rem;
+    align-self: center;
+    margin-left: 2vw;
+}
+
+
+#long-term-goals > ol > li > input {
+    outline: none;
+    border: none;
+    list-style: none;
+}
+
+
+
+#long-term-goals > header{
+    text-align: center;
+    font-size: 5vh;
+    padding-top: 2vh;
+}
+
+
+
+#long-term-goals {
+
+    background-color: aliceblue;
+    border-radius: 0px 0px 20px 20px;
+}
+
+
+
+#long-term-goals > div:hover + #edit{
+    display: block;
+}
+
+#edit {
+    display: none;
+    
+}
+
+
+span.add-goal, span.goal-HTML{
+    height: 4vh;
+    font-size: 2vh;
+    padding: 0em;
+    margin: 0px;
+    border-radius: 10px;
+    padding: 1vh;
+    display: block;
+    line-height: 4vh;
+    width: max-content;
+    margin-left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+}
+
+
+span.add-goal {
+    color: mediumslateblue;
+}
+
+span.add-goal:hover {
+    opacity: .7;
+    cursor: pointer;
+}
+span.goal-HTML:hover{
+    background-color: rgb(196, 227, 255);
+    cursor: pointer;
+}
+
+span.goal-HTML[contenteditable="true"]:focus{
+    outline: none;
+    display: inline-block;
+    border: none;
+    color:red;
+    background-color: #f0f8ff;
+    min-width: 30px;
+
+}
+
+
+
+
+
+body {
+    background-color: rgb(210, 235, 255);
+}
+
+
+
+
+
+
+#all-todos> header{
+    text-align: left;
+    font-size: 5vh;
+    padding:2vh;
+    text-decoration: underline;
+}
+
+#all-todos{
+    margin-left: 50%;
+    transform: translate(-50%);
+    width:60%;
+}
+
+table{
+    width: 100%;
+    font-size: 5vh;
+    font-weight: 200;
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+}
+
+td {
+    font-size: 3vh;
+}
+
+td:hover{
+    opacity: .5;
+    cursor: pointer;
+}
+
+
+
+th{
+    width:33%;
+}
+
+td:focus {
+    outline:none;
+    color: red;
+}
+
+
+#add-todo{
+    font-size: 40px;
+}

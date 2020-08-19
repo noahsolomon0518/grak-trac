@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+body {
+    padding:0px;
+    margin: 0px;
+    background-color: azure;
+    font-family: 'Roboto', Helvetica, sans-serif;
+
+}
+
+
+#login {
+    height: 50vh; 
+    width:60vw; 
+    background-image: linear-gradient(to bottom right, rgb(221, 219, 255), rgb(162, 164, 243));
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 30px;
+    padding: 2vh;
+
+}
+
+
+
+#login > header {
+    text-align: center;
+    font-size: 5vh;
+    height: 15%;
+}
+
+#login > form {
+
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 27% 63%;
+    grid-template-rows: 22% 22% 22% 17% 17%;
+}
+
+
+#login > form > * {
+    width:90%;
+    align-self: center;
+    justify-self: start;
+}
+
+#login > form > label {
+    justify-self: end;
+    width: max-content;
+    margin-right: 1vw;
+}
+
+#login > form > input[type="submit"] {
+    grid-column: 1/3;
+    background-color: rgb(128, 128, 255);
+    color: white;
+    border: none;
+    justify-self: center;
+    margin-left: 6vw;
+    width:30%;
+    font-size: 2vh;
+    height: 50%;
+}
+
+#login > form > input[type="submit"]:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+
+#login > form > span {
+    grid-column: 1/3;
+    justify-self: center;
+    text-align: center;
+    margin-left: 6vw;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid white ;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    height: 45%;
+    font-size: 100%;
+}
+
+input:hover{
+    border: 1px solid lightgray ;
+}
+
+input:focus {
+    outline-width: 0px;
+    border: 1px solid gray;
+}
+
+
+
+
