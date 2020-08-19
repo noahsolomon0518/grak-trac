@@ -135,100 +135,87 @@ var sampleDataDB = [
 ]
 
 
+class TodoController {
+    static update(data) {
+        TodoController.drawTodaysTodos(data)
+    }
 
+
+    static drawTodaysTodos(data) {
+        let allTodosDiv = document.getElementById('all-todos')
+        let table = document.createElement('table')
+        let tbody = document.createElement('tbody')
+        data[0].forEach(dataRowJSON=>{
+            let row = TodoDrawer.todoBodyRow(dataRowJSON)
+            TodoDrawer.todoBodyRowAddEvents(row)
+            tbody.append(row)
+        })
+        let addTodo = TodoDrawer.addTodoRow()
+        TodoEventAdd.addTodoEvents(addTodo)
+        tbody.append(addTodo)
+        table.append(TodoDrawer.todoHeaderRow(['Section','Task','Status']))
+        table.append(tbody)
+        allTodosDiv.append(table)
+
+    }
+}
 
 
 
 class TodoDrawer {
-
-    static update(data) {
-        TodoDrawer.drawTodos(data)
-        TodoDrawer.addDeleteNodes()
-        TodoDrawer.addTodoNodes()
-    }
-
-
-
-
-    static drawTodos(data) {
-        let colors = ['red', '#fcf75e', '#98FB98']
-        let todoDiv = document.getElementById('all-todos')
-        data.forEach(dayTodos => {
-            let todaysTodosHTML = `
-            <table>
-                <thead>
-                    <tr><th>Section</th><th>Task</th><th>Status</th></tr>
-                </thead>
-                <tbody>
-                    `
-            dayTodos.forEach(element => {
-                let color = colors[element.status]
-                todaysTodosHTML += `<tr><td class = "section">${element.section}</td><td class = "task">${element.task}</td><td class = "status" ><span style = "background-color:${color}; width:20px; height:20px; display:inline-block; border-radius: 5px; border: .25px solid steelblue"></span></td></tr>`
-            });
-
-            todaysTodosHTML += `
-            </tbody></table>
-            <br>
-            `
-            todoDiv.innerHTML += todaysTodosHTML
+    static todoHeaderRow(headers) {
+        let element = document.createElement('thead')
+        let html = '<tr>'
+        headers.forEach(header=> {
+            html += `<th>${header}</th>`
         })
+        html += '</tr>'
+        element.innerHTML = html
+        return element
     }
 
+    static todoBodyRow(dataRow) {
+        let statusColors = ['red', 'rgb(252, 247, 94)', 'rgb(152, 251, 152)']
+        let element = document.createElement('tr')
+        let html = `
+            <td class = "section">${dataRow.section}</td>
+            <td class = "task">${dataRow.task}</td>
+            <td class = "status">
+                <span style = "background-color:${statusColors[dataRow.status]};"></span></td>
+            <td class = "delete">X</td>`
+        element.innerHTML = html
 
+        return element
 
-
-    static addDeleteNodes() {
-        let todaysTodos = document.querySelectorAll('table')[0].getElementsByTagName('tbody')[0].getElementsByTagName('tr')
-        for (let row of todaysTodos) {
-            let deleteNode = document.createElement('td')
-            deleteNode.innerText = 'X'
-            deleteNode.setAttribute('class', 'delete')
-            deleteNode.style.color = 'red'
-            deleteNode.style.position = 'absolute'
-            deleteNode.style.marginLeft = '1vw'
-            deleteNode.style.fontWeight = '400'
-            row.lastElementChild.after(deleteNode)
-        }
     }
 
-
-    static addTodoNodes() {
-        let todaysTodosTable = document.querySelectorAll('table')[0]
+    static addTodoRow(){
         let addTodoRow = document.createElement('tr')
-        let AddTodoNode = document.createElement('td')
-        AddTodoNode.colSpan = '3'
-        AddTodoNode.setAttribute('id', 'add-todo')
-        AddTodoNode.style.textAlign = 'center'
-        AddTodoNode.style.color = 'mediumslateblue'
-        AddTodoNode.innerHTML = '&#43;'
-        addTodoRow.append(AddTodoNode)
-        todaysTodosTable.append(addTodoRow)
-
+        let html = '<td class = "add-todo" colspan = 3 >&#43;</td>'
+        addTodoRow.innerHTML = html
+        return addTodoRow
     }
 
+    static todoBodyRowAddEvents(tr) {
+        let sectionTaskTds = tr.querySelectorAll('td.section, td.task')
+        let statusTd = tr.querySelector('td.status')
+        let deleteTd = tr.querySelector('td.delete')
+        for (let td of sectionTaskTds) {
+            TodoEventAdd.sectionTaskEvents(td)
+        }
+        TodoEventAdd.statusEvents(statusTd)
+        TodoEventAdd.deleteEvents(deleteTd)
+    }
 
 
 }
 
 
-class TodoFunctionality {
+class TodoEventAdd {
 
-    static update() {
-        TodoFunctionality.todoEvents()
-        TodoFunctionality.statusEvents()
-        TodoFunctionality.deleteEvents()
-        TodoFunctionality.addTodoEvents()
 
-    }
 
-    static todoEvents() {
-        let todaysTodos = document.querySelector('table').querySelectorAll('td.task, td.section')
-        for (let td of todaysTodos) {
-            TodoFunctionality.addSectionTaskEvents(td)
-        }
-    }
-
-    static addSectionTaskEvents(td) {
+    static sectionTaskEvents(td) {
         td.addEventListener('click', () => {
             td.contentEditable = true
             td.innerText = ''
@@ -254,10 +241,8 @@ class TodoFunctionality {
                 } else {
                     if (td.parentElement.nextElementSibling != null) {
                         checkTdFocus()
-                        console.log(td)
-                        console.log(td.parentElement.nextElementSibling.firstChild)
                         td.parentElement.nextElementSibling.firstElementChild.click()
-                    }else{
+                    } else {
                         td.blur()
                         checkTdFocus()
                     }
@@ -281,74 +266,40 @@ class TodoFunctionality {
         }
     }
 
-    static statusEvents() {
-        let todaysTodosStatus = document.querySelector('table').querySelectorAll('td.status>span')
+    static statusEvents(td) {
         let statusColors = ['red', 'rgb(252, 247, 94)', 'rgb(152, 251, 152)']
-        for (let todoStatus of todaysTodosStatus) {
-            todoStatus.parentElement.addEventListener('mousedown', () => {
-                let nextColorIndex = statusColors.indexOf(todoStatus.style.backgroundColor) + 1
-                if (nextColorIndex == 3) {
-                    todoStatus.style.backgroundColor = 'red'
-                } else {
-                    todoStatus.style.backgroundColor = statusColors[nextColorIndex]
-                }
-            })
-        }
-    }
-
-    static deleteEvents() {
-        let todaysTodosDelete = document.querySelector('table').querySelectorAll('td.delete')
-        for (let todoDelete of todaysTodosDelete) {
-            todoDelete.addEventListener('click', () => {
-                todoDelete.parentElement.remove()
-            })
-        }
-    }
-
-    static addTodoEvents() {
-        let addTodo = document.getElementById('add-todo')
-        let todaysTable = document.querySelector('table').querySelector('tbody')
-        addTodo.addEventListener('click', () => {
-            let newTodoTr = document.createElement('tr')
-            newTodoTr.innerHTML = `
-            <td class = "section"></td><td class = "task"></td><td class = "status" ><span style = "background-color:red; width:20px; height:20px; display:inline-block; border-radius: 5px; border: .25px solid steelblue"></span></td>
-            `
-            TodoFunctionality.addSectionTaskEvents(newTodoTr.firstElementChild)
-            TodoFunctionality.addSectionTaskEvents(newTodoTr.firstElementChild.nextElementSibling)
-            console.log(newTodoTr.firstElementChild )
-            todaysTable.append(newTodoTr)
-
-
-            newTodoTr.lastElementChild.after(addDeleteNode(newTodoTr))
-            newTodoTr.firstElementChild.click()
-
+        td.addEventListener('mousedown', () => {
+            let nextColorIndex = statusColors.indexOf(td.firstElementChild.style.backgroundColor) + 1
+            console.log(nextColorIndex)
+            if (nextColorIndex == 3) {
+                td.firstElementChild.style.backgroundColor = 'red'
+            } else {
+                td.firstElementChild.style.backgroundColor = statusColors[nextColorIndex]
+            }
         })
 
+    }
 
-        function addDeleteNode(newTodoTr) {
-            let deleteNode = document.createElement('td')
-            deleteNode.innerText = 'X'
-            deleteNode.setAttribute('class', 'delete')
-            deleteNode.style.color = 'red'
-            deleteNode.style.position = 'absolute'
-            deleteNode.style.marginLeft = '1vw'
-            deleteNode.style.fontWeight = '400'
-            
-            deleteNode.addEventListener('click', () => {
-                newTodoTr.remove()
+    static deleteEvents(td) {
+        td.addEventListener('click', () => {
+            td.parentElement.remove()
+        })
+
+    }
+
+    static addTodoEvents(addTodo) {
+        addTodo.addEventListener('click', () => {
+            let prevRow = addTodo.previousElementSibling
+            let newRow = TodoDrawer.todoBodyRow({
+                section:'Click to edit',
+                task: 'Click to edit',
+                status:0
             })
-            return deleteNode
-        }
-
-
-
-        
+            TodoDrawer.todoBodyRowAddEvents(newRow)
+            prevRow.after(newRow)
+        })
     }
 }
 
 
-
-
-
-TodoDrawer.update(sampleDataDB)
-TodoFunctionality.update()
+TodoController.update(sampleDataDB)
