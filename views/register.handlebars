@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="/css/register.css">
+<div id="login">
+    <header>Register</header>
+    <form action = "javascript:void(0);">
+        <label>Username:</label>
+        <input type="text" id = "username-form">
+        <label>Password:</label>
+        <input type="text" id = "password-form">
+        <label>Repeat Password:</label>
+        <input type="text" id = "repeat-password-form">
+        <input type="submit" value="Submit" onclick="registerValidation()">
+        <span> Have an account? <a href="/content/login">Login</a></span>
+    </form>
+</div>
+<script src="/js/register.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
