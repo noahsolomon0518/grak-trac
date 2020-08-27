@@ -3,8 +3,10 @@ const express = require('express')
 const exhb = require('express-handlebars')
 const path = require('path')
 const app = express();
-const content = require('./routes/content.js')
-const dbquery = require('./routes/dbquery.js')
+const main = require('./routes/main.js')
+const account = require('./routes/account.js')
+const myPage = require('./routes/my-page.js')
+
 const bodyParser = require('body-parser')
 
 
@@ -12,8 +14,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(express.raw())
 app.use(express.text())
-app.use('/content', content)
-app.use('/dbquery', dbquery)
+app.use('/', main)
+app.use('/my-page', myPage)
 
 
 app.engine('handlebars', exhb({defaultLayout: 'main'}))
