@@ -29,8 +29,8 @@ describe("GET /my-page",()=>{
                 res.status.should.be.equal(200)
                 res.redirects.length.should.be.equal(0);
                 done()
-             })
-    })
+            })
+        })
 })
 
 describe('POST /todos-by-username', ()=>{
@@ -42,10 +42,10 @@ describe('POST /todos-by-username', ()=>{
                 res.status.should.be.equal(200)
                 res.body.should.be.an('array');
                 done()
-             })
-    })
-    it('Todos should be grouped by date',(done)=>{
-        chai.request(server)
+            })
+        })
+        it('Todos should be grouped by date',(done)=>{
+            chai.request(server)
             .post('/my-page/todos-by-username')
             .send({username:'nsolomon'})
             .end((err, res) => {
@@ -63,8 +63,8 @@ describe('POST /todos-by-username', ()=>{
                     console.log('----------------------------------------------')
                 });
                 done()
-             })
-    })
+            })
+        })
 })
 
 

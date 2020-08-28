@@ -34,7 +34,7 @@ function dbRegisterValidation(){
     return new Promise(resolve => {
         let username = document.getElementById('username-form').value
         let password = document.getElementById('password-form').value
-        axios.post('/dbquery/registration-validation',{username:username, password:password}).then((res)=>{
+        axios.post('/account/registration-validation',{username:username, password:password}).then((res)=>{
             resolve(res.data)
         })
     })
@@ -42,5 +42,5 @@ function dbRegisterValidation(){
 
 
 function login(){
-    console.log('login!')
+    window.location.href = '/login'
 }

@@ -17,11 +17,13 @@ function getCon(){
 
 
 router.post('/todos-by-username', (req,res)=>{
+    console.log('username', req.body.username)
+
     let con = getCon()
     let sql = `select todos.todoId, section, task, status, user.userId, dateCreated, date(dateCreated) as date, username from todos 
     JOIN user on user.userId = todos.userId
     WHERE todos.dateCreated in (SELECT DISTINCT(dateCreated) as uniqueDates from todos ORDER BY uniqueDates DESC)
-    AND user.username = '${req.body.username}'
+    AND user.username = 'nsolomon'
     ORDER BY dateCreated DESC
     `
     con.connect(()=>{
@@ -41,11 +43,19 @@ router.get('/', (req,res)=>{
     if(req.session.username == undefined){
         res.redirect('/login')
     }else{
-        axios.post('http://localhost:5000/my-page/todos-by-username',{username:req.session.username})
+        axios.post('http://localhost:5000/my-page/todos-by-username',{username:'nsolomon'})
         .then(result=>{
-            res.render('my-page', {username:req.session.username, todo_data:parseData(result.data)})
+            console.log('Hello')
+            res.render('my-page', {username:req.session.username})
+        }).catch(err=>{
+            console.log(err)
         })
+        
     }
+    
+    
+    if(req.headers.username == 'nsolomon' && req.headers.password == 'Go@tee123'){req.}
+        
 
 })
 

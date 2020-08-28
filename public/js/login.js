@@ -31,7 +31,7 @@ function dbLoginValidation(){
     return new Promise(resolve => {
         let username = document.getElementById('username-form').value
         let password = document.getElementById('password-form').value
-        axios.post('/dbquery/login-validation',{username:username, password:password}).then((res)=>{
+        axios.post('/account/login-validation',{username:username, password:password}).then((res)=>{
             resolve(res.data)
         })
     })
@@ -39,5 +39,5 @@ function dbLoginValidation(){
 
 
 function login(){
-    console.log('login!')
+    window.location.href = '/my-page'
 }
