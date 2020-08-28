@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i');
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+nav {
+    height: 80px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: azure;
+}
+
+nav>div>a {
+    margin-right: 2vw;
+    text-decoration: none;
+    font-size: 1em;
+    text-align: center;
+    line-height: 80px;
+    min-height: 40px;
+    min-width: 100px;
+    justify-self: flex-end;
+}
+
+nav>div {
+    height: 100%;
+    display: flex;
+    justify-self: end;
+}
+
+nav>div>a:hover {
+    opacity: .7;
+    background-color: thistle;
+}
+
+nav>div>a.selected {
+    text-decoration: underline;
+}
+
+nav>header {
+    font-size: 2rem;
+    align-self: center;
+    margin-left: 2vw;
+}
+
+
+
+
+body {
+    background-color: rgb(210, 235, 255);
+}
+
+#all-todos>header {
+    text-align: left;
+    font-size: 5vh;
+    padding: 2vh;
+    text-decoration: underline;
+}
+
+#all-todos {
+    margin-left: 50%;
+    transform: translate(-50%);
+    width: 80%;
+}
+
+table {
+    width: 80%;
+    font-size: 5vh;
+    font-weight: 200;
+    margin-left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+    border-radius: 10px 10px 0px 0px;
+    margin-bottom: 5vh;
+}
+
+td {
+    font-size: 3vh;
+}
+
+
+th {
+    width: 25%;
+}
+
+td:focus {
+    outline: none;
+    color: red;
+}
+
+
+.delete{
+    color:red;
+}
+
+
+td span{
+    border-radius: 100%;
+    display: inline-block;
+    height:2vw;
+    width:2vw;
+    background-color: steelblue;
+    margin-left:.5vw;
+    align-self: center;
+}

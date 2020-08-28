@@ -17,8 +17,10 @@ describe('post /todos/todos-by-username-today',()=>{
             .send({username:'nsolomon', friends:['msol']})
             .end((err, res) => {
                 res.status.should.be.equal(200)
-                res.body.should.be.an('array');
-                console.log("DATA")
+                res.body.should.be.an('object')
+                for(let key of Object.keys(res.body)){
+                    res.body[key].should.be.an('array')
+                }
                 console.log(res.body)
                 done()
              })

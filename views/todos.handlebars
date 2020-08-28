@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="/css/todos.css">
+<nav>
+    <header>Todos With Friends</header>
+    <div>
+        <a class="selected" href="/my-page">My Page</a>
+        <a href="/todos">Todos</a>
+        <a href="friends.html">Friends</a>
+    </div>
+</nav>
+<section id="all-todos">
+    <header>Today's to-do's</header>
+    {{#with myTodos}}
+    <h3 style = "text-align:center ">{{this.[0].username}}</h3>
+    <table id = 'user-todo' CELLSPACING=0 BORDER=0>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Section</th>
+                <th>Task</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+            <tr>
+                <td class="date">{{this.date}}</td>
+                <td class="section">{{this.section}}</td>
+                <td class="task">{{this.task}}</td>
+                <td class="status">{{this.status}}</td>
+                <td style = "position:absolute; width:max-content; display: flex;" class="edit"><span class = 'edit'>&#9998;</span><span class ='new'>&#x21b2;</span> <span class = 'delete'>&#10005;</span>  </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/with}}
+    {{#each friendsTodos}}
+    <h3 style = "text-align:center ">{{this.[0].username}}</h3>
+    <table id = 'user-todo' CELLSPACING=0 BORDER=0>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Section</th>
+                <th>Task</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+            <tr>
+                <td class="date">{{this.date}}</td>
+                <td class="section">{{this.section}}</td>
+                <td class="task">{{this.task}}</td>
+                <td class="status">{{this.status}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/each}}
+</section>
+
+
+
