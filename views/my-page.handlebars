@@ -13,10 +13,29 @@
 </section>
 <section id="all-todos">
     <header>Todo History</header>
-
+    {{#each todoData}}
+    <table CELLSPACING=0 BORDER=0>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Section</th>
+                <th>Task</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each this}}
+            <tr>
+                <td class="date">{{this.date}}</td>
+                <td class="section">{{this.section}}</td>
+                <td class="task">{{this.task}}</td>
+                <td class="status">{{this.status}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    {{/each}}
 </section>
 
 
 
-<script src="/js/my-page-goals.js"></script>
-<script src="/js/my-page-todos.js"></script>

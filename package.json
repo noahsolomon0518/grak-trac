@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test": "mocha tests/my-pageRouteTest"
+    "myPage": "mocha tests/my-pageRouteTest",
+    "todos": "mocha tests/todosRouteTest"
+
   },
   "author": "",
   "license": "ISC",

@@ -122,13 +122,15 @@ body {
 #all-todos {
     margin-left: 50%;
     transform: translate(-50%);
-    width: 60%;
+    width: 80%;
 }
 
 table {
-    width: 100%;
+    width: 80%;
     font-size: 5vh;
     font-weight: 200;
+    margin-left: 50%;
+    transform: translate(-50%);
     text-align: center;
     border-radius: 10px 10px 0px 0px;
 }
@@ -137,13 +139,13 @@ td {
     font-size: 3vh;
 }
 
-td:hover {
-    opacity: .5;
+tr:hover {
+    background-color: darkcyan;
     cursor: pointer;
 }
 
 th {
-    width: 33%;
+    width: 25%;
 }
 
 td:focus {

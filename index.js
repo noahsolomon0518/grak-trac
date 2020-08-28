@@ -6,6 +6,8 @@ const app = express();
 const main = require('./routes/main.js')
 const account = require('./routes/account.js')
 const myPage = require('./routes/my-page.js');
+const todos = require('./routes/todos.js');
+
 
 app.use(session({secret:'secret', saveUninitialized:true , resave:true}))
 app.use(express.json())
@@ -19,6 +21,8 @@ app.use(express.text())
 app.use('/', main)
 app.use('/my-page', myPage)
 app.use('/account', account)
+app.use('/todos', todos)
+
 
 
 app.engine('handlebars', exhb({defaultLayout: 'main'}))
